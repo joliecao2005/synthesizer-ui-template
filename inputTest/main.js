@@ -13,7 +13,14 @@ function playSynthesizerNote() {
 // when i click on the button...
 
 // myButton.addEventListener("click", changeBodyBackgroundColour);
-myButton.addEventListener("click", playSynthesizerNote);
+// myButton.addEventListener("click", playSynthesizerNote);
+
+function checkWindowWidth() {
+  let windowWidth = window.innerWidth;
+  buttonOutputText.textContent = windowWidth;
+
+  myButton.addEventListener("click", checkWindowWidth);
+}
 
 ///////////// Button
 
@@ -21,23 +28,24 @@ let buttonOutputText = document.getElementById("buttonOutput");
 let buttonEventText = document.getElementById("currentButtonEvent");
 let heldButtonText = document.getElementById("buttonHeldEvent");
 
-/* 
-myButton.addEventListener("mouseenter", () => { 
+myButton.addEventListener("mouseenter", () => {
   buttonEventText.textContent = "mouseenter";
 });
 
-myButton.addEventListener("mouseleave", () => { 
+myButton.addEventListener("mouseleave", () => {
   buttonEventText.textContent = "mouseleave";
 });
 
-myButton.addEventListener("mousedown", () => { 
+myButton.addEventListener("mousedown", () => {
   buttonEventText.textContent = "mousedown";
+  heldButtonText.textContent = "true";
 });
 
-myButton.addEventListener("mouseup", () => { 
+myButton.addEventListener("mouseup", () => {
   buttonEventText.textContent = "mouseup";
+  heldButtonText.textContent = "false";
 });
- */
+
 ///////////// Checkbox
 let myCheckbox = document.getElementById("exampleCheckbox");
 let checkboxOutputText = document.getElementById("checkboxOutput");

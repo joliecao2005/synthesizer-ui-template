@@ -16,4 +16,8 @@ allKeys.forEach((key) => {
     let note = e.target.dataset.note;
     polySynth.triggerAttackRelease(note + octave, "8n");
   });
+  key.addEventListener("mouseup", (e) => {
+    let note = e.target.dataset.note;
+    polySynth.triggerRelease(note + octave);
+  });
 });
