@@ -4,6 +4,8 @@
 
 let testRange = document.getElementById("frequencySlider");
 
+const meterOutput = document.getElementById("meterOutput");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////// Intro Modal popup
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,8 +91,8 @@ function changeDistortionAmount(newDistAmt) {
   }
 }
 
-function toggleDistortion(distortionOn){
-  if(distortionOn){
+function toggleDistortion(distortionOn) {
+  if (distortionOn) {
     distortion.wet.value = 1;
   } else {
     distortion.wet.value = 0;
@@ -109,8 +111,8 @@ function changeReverbDecay(newVerbDecayAmt) {
   reverb.set({ decay: newVerbDecayAmt });
 }
 
-function toggleReverb(verbOn){
-  if(verbOn){
+function toggleReverb(verbOn) {
+  if (verbOn) {
     reverb.wet.value = 1;
   } else {
     reverb.wet.value = 0;
@@ -146,6 +148,23 @@ function changeFilterQ(newFilterQ) {
   /* check to see if parameter within expected range */
   if (newFilterQ >= 0 && newFilterQ < 20) {
     filter.Q.value = newFilterQ;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////// Meter
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+setInterval(checkMeter, 500); //every 500 milisecond (how often runs it)
+function checkMeter() {
+  let meterValue = meter.getValue();
+  let clampedValue = clamp(meterValue, -80, 0);
+  // find the current value
+  // console.log(meterValue);
+  let remappedValue = remapRange(clampedValue, -80, 0, 0, 1);
+  if (remappedValue < 0.1) {
+    //do something
+  } else {
   }
 }
 
