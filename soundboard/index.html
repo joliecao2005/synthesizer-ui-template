@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Soundboard Prototype</title>
+    <script src="https://unpkg.com/tone"></script>
+
+    <script src="toneSetup.js" defer></script>
+    <script src="UIControl.js" defer></script>
+  </head>
+  <body>
+    <!-- Intro Modal popup -->
+    <dialog id="introDialog">
+      <p>You might want to reload the page to experience a different music.</p>
+      <button id="dialogCloseButton" autofocus>OK</button>
+    </dialog>
+    <!-- Soundboard -->
+    <div id="sound-board">
+      <div class="sound-zone" data-sound="bird">
+        <img src="bird.jpeg" alt="Bird 1" />
+      </div>
+      <div class="sound-zone" data-sound="newspaper">
+        <img src="newspaper.jpeg" alt="Newspaper" />
+      </div>
+      <div class="sound-zone" data-sound="stream">
+        <img src="stream.jpg" alt="Stream" />
+      </div>
+      <div class="sound-zone" data-sound="footstep">
+        <img src="footstep.jpeg" alt="Footstep" />
+      </div>
+      <div class="sound-zone random-sound">
+        <img src="random.jpeg" alt="Random" />
+      </div>
+      <div class="sound-zone" data-sound="churchbell">
+        <img src="churchbell.jpeg" alt="Church Bell" />
+      </div>
+      <div class="sound-zone" data-sound="rain">
+        <img src="rain.jpg" alt="Rain" />
+      </div>
+      <div class="sound-zone" data-sound="bird2">
+        <img src="bird2.jpeg" alt="Bird 2" />
+      </div>
+      <div class="sound-zone" data-sound="train">
+        <img src="train.jpeg" alt="Train" />
+      </div>
+    </div>
+  </body>
+</html>

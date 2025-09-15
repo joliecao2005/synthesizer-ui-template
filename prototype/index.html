@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device
+    -width, initial-scale=1.0"
+    />
+
+    <!-- Import our external library, Tone.js -->
+    <!-- Note that unlike the other code files we want it to load before anything else so we don't include defer -->
+    <script src="http://unpkg.com/tone"></script>
+    <!-- Import our CSS stylesheets -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Import our JS files -->
+    <!-- As these reference to DOM elements, we want to load them after it has loaded, so we use the defer property -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/API/HTMLScriptElement/defer -->
+    <!-- This script initialises the audio synthesizer system using tone -->
+    <script src="toneSetup.js" defer></script>
+    <!-- The script handles connecting the UI to the synthesizer : this is where you'll be working -->
+    <script src="UIControls.js" defer></script>
+    <title>Soundboard Prototype</title>
+  </head>
+  <body>
+    <!-- Intro Modal popup -->
+    <!-- Websites are subject to an autoplay policy, so need user interaction before making sound -->
+    <!-- In this case we use the interaction of closing the modal to trigger loading the synth -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Autoplay -->
+    <dialog id="introDialog">
+      <p>You might want to reload the page to experience a different music.</p>
+      <button id="dialogCloseButton" autofocus>OK</button>
+    </dialog>
+
+    <!-- Create Soundboard-->
+    <div id="sound-board">
+      <!-- Sound zones with data attributes for sound files -->
+
+      <div class="sound-zone" data-sound="bird.mp3">
+        <img src="bird.jpeg" alt="Bird 1" />
+      </div>
+      <div class="sound-zone" data-sound="newspaper.mp3">
+        <img src="newspaper.jpeg" alt="Newspaper" />
+      </div>
+      <div class="sound-zone" data-sound="stream.mp3">
+        <img src="stream.jpg" alt="Stream" />
+      </div>
+
+      <div class="sound-zone" data-sound="footstep.mp3">
+        <img src="footstep.jpeg" alt="Footstep" />
+      </div>
+      <div class="sound-zone random-sound">
+        <img src="random.jpeg" alt="Random" />
+      </div>
+      <div class="sound-zone" data-sound="churchbell.mp3">
+        <img src="churchbell.jpeg" alt="Church Bell" />
+      </div>
+      <div class="sound-zone" data-sound="rain.mp3">
+        <img src="rain.jpg" alt="Rain" />
+      </div>
+
+      <div class="sound-zone" data-sound="fountain.mp3">
+        <img src="bird2.jpeg" alt="Bird 2" />
+      </div>
+
+      <div class="sound-zone" data-sound="train.mp3">
+        <img src="train.jpeg" alt="Train" />
+      </div>
+    </div>
+  </body>
+</html>
