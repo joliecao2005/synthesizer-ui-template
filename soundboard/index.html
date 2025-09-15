@@ -13,9 +13,18 @@
   <body>
     <!-- Intro Modal popup -->
     <dialog id="introDialog">
-      <p>You might want to reload the page to experience a different music.</p>
+      <p>
+        This soundboard will make some noise, please check your system's volume
+        setting.
+      </p>
       <button id="dialogCloseButton" autofocus>OK</button>
     </dialog>
+
+    <!-- Background music selection -->
+    <div id="background-zone" class="bg-zone">
+      <img src="music.jpeg" alt="Random Background Music" />
+    </div>
+
     <!-- Soundboard -->
     <div id="sound-board">
       <div class="sound-zone" data-sound="bird">

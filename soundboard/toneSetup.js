@@ -1,42 +1,62 @@
 const playingSources = {};
 
-const backgroundTracks = ["jazz.mp3", "russianmarket.mp3"];
-// Function to initialize and play random background music
-function toneInit() {
-  const randomIndex = Math.floor(Math.random() * backgroundTracks.length);
-  const backgroundSound = new Tone.Player(backgroundTracks[randomIndex])
+// Function to play a random background music track
+// function playRandomBackgroundMusic() {
+//   const randomIndex = Math.floor(Math.random() * backgroundTracks.length);
+//   const backgroundSound = new Tone.Player(
+//     backgroundTracks[randomIndex]
+//   ).toDestination();
+//   backgroundSound.loop = true;
+//   backgroundSound.autostart = true;
+//   playingSources["background"] = backgroundSound;
+//   backgroundSound.start();
+// }
+
+// Define audio effects system
+const reverb = new Tone.Reverb({ decay: 1.5, wet: 0.3 }).toDestination();
+
+// Players for background music
+const musicPlayer = {
+  jazz: new Tone.Player("jazz.mp3").connect(reverb).toDestination(),
+  russianmarket: new Tone.Player("russianmarket.mp3")
     .connect(reverb)
-    .toDestination();
-  backgroundSound.loop = true;
-  backgroundSound.volume.value = -20; // Lower the volume
-  backgroundSound.start();
-  playingSources["background"] = backgroundSound; // Track background sound
-}
+    .toDestination(),
+};
+// Handle playing and stopping background music
+let currentBackgroundMusic = null;
 
-// Initialize Tone.js and setup sound effects with optional effects
-function setupSounds() {
-  Object.keys(soundEffects).forEach((key) => {
-    const player = soundEffects[key];
-
-    // Optionally add effects, like reverb, here
-    const reverb = new Tone.Reverb({ decay: 1.5, wet: 0.3 }).toDestination();
-    player.connect(reverb);
-  });
+function playRandomMusic(box) {
+  if (currentBackgroundMusic) {
+    // Stop current background music if playing
+    currentBackgroundMusic.stop();
+    currentBackgroundMusic = null;
+    box.classList.remove("shrunk");
+  } else {
+    // Choose a random background music track
+    const keys = Object.keys(musicPlayer);
+    const randomIndex = Math.floor(Math.random() * keys.length);
+    const musicKey = keys[randomIndex];
+    currentBackgroundMusic = musicPlayer[musicKey];
+    currentBackgroundMusic.loop = true;
+    currentBackgroundMusic.autostart = true;
+    currentBackgroundMusic.volume.value = -20; // Lower the volume
+    currentBackgroundMusic.start();
+    box.classList.add("shrunk");
+  }
 }
 
 const soundEffects = {
-  bird: new Tone.Player("bird.mp3").toDestination(),
-  bird2: new Tone.Player("bird2.mp3").toDestination(),
-  footstep: new Tone.Player("footstep.mp3").toDestination(),
-  train: new Tone.Player("train.mp3").toDestination(),
-  churchbell: new Tone.Player("churchbell.mp3").toDestination(),
-  rain: new Tone.Player("rain.mp3").toDestination(),
-  stream: new Tone.Player("stream.mp3").toDestination(),
-  newspaper: new Tone.Player("newspaper.mp3").toDestination(),
+  bird: new Tone.Player("bird.mp3").connect(reverb).toDestination(),
+  bird2: new Tone.Player("bird2.mp3").connect(reverb).toDestination(),
+  footstep: new Tone.Player("footstep.mp3").connect(reverb).toDestination(),
+  train: new Tone.Player("train.mp3").connect(reverb).toDestination(),
+  churchbell: new Tone.Player("churchbell.mp3").connect(reverb).toDestination(),
+  rain: new Tone.Player("rain.mp3").connect(reverb).toDestination(),
+  stream: new Tone.Player("stream.mp3").connect(reverb).toDestination(),
+  newspaper: new Tone.Player("newspaper.mp3").connect(reverb).toDestination(),
 };
 
-// Manage random sound playback
-// Random sounds selection
+// Manage random sound playback // Random sounds selection
 const randomSounds = ["churchbell", "train", "newspaper"];
 let currentRandomSound = null;
 
@@ -77,3 +97,10 @@ document.querySelectorAll(".sound-zone").forEach((box) => {
     playSoundWithEffect(soundKey, box);
   });
 });
+
+// Attach click event to the background music box
+document
+  .querySelector("#background-zone")
+  .addEventListener("click", (event) => {
+    playRandomMusic(event.currentTarget);
+  });
