@@ -11,6 +11,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  background-color: lightgray; /* Background color for visual feedback */
   transition: transform 0.2s;
 }
 
@@ -24,7 +25,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 450px;
-  margin: 0 auto;
+  margin: 10px auto;
+  cursor: pointer;
 }
 
 .sound-zone {
@@ -34,8 +36,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Ensure images fit within the zone */
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
 .sound-zone img {
@@ -44,7 +47,39 @@ body {
   object-fit: cover;
 }
 
+.sound-zone:hover,
+.bg-zone:hover {
+  transform: scale(
+    1.05
+  ); /* Slightly enlarge on hover for interaction feedback */
+}
+
 .sound-zone.shrunk,
 .bg-zone.shrunk {
   transform: scale(0.9);
+}
+
+dialog[open] {
+  margin: auto; /* place in centre */
+  padding: 1rem;
+  /* background-color: var(--col01); */
+  /* color: var(--col02); */
+  /* border: var(--border); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+dialog::backdrop {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* background overlay when modal is open */
+}
+#dialogCloseButton {
+  background-color: var(--col01);
+  /* color: var(--col02); */
+  padding: 0 1rem;
 }
